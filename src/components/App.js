@@ -1,22 +1,30 @@
 import React, { PropTypes } from 'react';
-import { Link, IndexLink } from 'react-router';
+import {connect} from 'react-redux';
+import Header from './common/Header';
+import Notifications from './common/Notifications';
 
-const App = (props) => {
-  return (
-    <div>
-      <IndexLink to="/">Home</IndexLink>
-      {' | '}
-      <Link to="/fuel-savings">Example App</Link>
-      {' | '}
-      <Link to="/about">About</Link>
-      <br/>
-      {props.children}
-    </div>
-  );
-};
+class App extends React.Component {
+  constructor(props, context){
+    super(props, context);
+  }
+  render () {
+    return (
+      <div className="main">
+        <Notifications />
+        <Header />
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 App.propTypes = {
-  children: PropTypes.element
+  children: PropTypes.object.isRequired
 };
 
+/*function mapStateToProps(state, ownProps){
+  return {};
+}*/
+
 export default App;
+//export default connect(mapStateToProps)(App);

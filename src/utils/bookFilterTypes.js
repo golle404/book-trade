@@ -1,0 +1,5 @@
+export const FILTER_ALL = 'FILTER_ALL';
+export const FILTER_USER = 'FILTER_USER';
+export const FILTER_REQUESTED = 'FILTER_REQUESTED';
+export const FILTER_APPROVED = 'FILTER_APPROVED';
+export const FILTER_PENDING = 'FILTER_PENDING';

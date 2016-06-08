@@ -1,17 +1,20 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-
+import { Route, IndexRoute} from 'react-router';
 import App from './components/App';
-import HomePage from './components/HomePage';
-import FuelSavingsPage from './containers/FuelSavingsPage'; // eslint-disable-line import/no-named-as-default
-import AboutPage from './components/AboutPage.js';
-import NotFoundPage from './components/NotFoundPage.js';
+import AuthPage from './components/auth/AuthPage';
+import AboutPage from './components/about/AboutPage';
+import HomePage from './components/home/HomePage';
+import UserPage from './components/user/UserPage';
+import AddBookPage from './components/user/AddBookPage';
+import AccountSettingsPage from './components/user/AccountSettingsPage';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage}/>
-    <Route path="fuel-savings" component={FuelSavingsPage}/>
     <Route path="about" component={AboutPage}/>
-    <Route path="*" component={NotFoundPage}/>
+    <Route path="auth" component={AuthPage}/>
+    <Route path="user/:username" component={UserPage}/>
+    <Route path="user/:username/add-book" component={AddBookPage}/>
+    <Route path="user/:username/settings" component={AccountSettingsPage}/>
   </Route>
 );

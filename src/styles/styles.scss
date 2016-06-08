@@ -1,31 +1,64 @@
-/* Variables */
-$vin-blue: #5bb7db;
-$vin-green: #60b044;
-$vin-red: #ff0000;
-
-/* Styles */
-body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
-  color: #4d4d4d;
-  min-width: 230px;
-  max-width: 550px;
+.main{
+  margin-top: 80px;
+}
+.container.login-container{
+  width: 400px;
+}
+.container.add-book-container{
+  width: 400px;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
   margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  font-weight: 300;
+  input{
+    margin-bottom: 10px;
+  }
+}
+.book-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .book-info{
+    .book-title{
+
+    }
+    .book-author{
+
+    }
+  }
 }
 
-td {
-	padding: 12px;
+.loading-icon{
+  $s: 16px;
+  $w: 2px;
+	position: relative;
+	width: $s;
+	height: $s;
+	&:after{
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		border: $w*.5 solid #777;
+		border-bottom-color: transparent;
+		animation: loading-icon-anim .5s infinite linear;
+	}
 }
 
-h2 {
-	color: $vin-blue;
+@keyframes loading-icon-anim {
+	to{
+		transform: rotate(1turn);
+	}
 }
-
-.savings { color: $vin-green; }
-.loss { color: $vin-red; }
-input.small { width: 46px; }
-td.fuel-savings-label { width: 175px; }
+.notifications-container{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: block;
+  z-index: 9999;
+  &.hidden{
+    display: none;
+  }
+}
