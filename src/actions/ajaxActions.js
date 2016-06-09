@@ -29,9 +29,9 @@ export function ajaxCallEnd(){
   return {type: types.AJAX_CALL_END};
 }
 
-/*export function ajaxCallError(){
-  return {type: types.AJAX_CALL_ERROR};
-}*/
+export function ajaxCallError(error){
+  return {type: types.AJAX_CALL_ERROR, error};
+}
 
 export function getBooksData(){
   return function(dispatch){
@@ -40,6 +40,7 @@ export function getBooksData(){
       dispatch(ajaxCallEnd());
       dispatch(booksDataLoadedSuccess(response));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -52,6 +53,7 @@ export function updateBookStatus(bookId, updateType){
       dispatch(ajaxCallEnd());
       dispatch(bookStatusUpdatedSuccess(response));
     }).catch((error)=>{
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -64,6 +66,7 @@ export function getAuthUser(flag){
       dispatch(ajaxCallEnd());
       dispatch(userLoginSuccess(response));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -76,6 +79,7 @@ export function formSubmit(formData){
       dispatch(ajaxCallEnd());
       dispatch(userLoginSuccess(response));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -88,6 +92,7 @@ export function newBookSubmit(formData){
       dispatch(ajaxCallEnd());
       dispatch(newBookSuccess(response));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -100,6 +105,7 @@ export function accountSettingsSubmit(formData){
       dispatch(ajaxCallEnd());
       dispatch(updateAccountSuccess(response));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };

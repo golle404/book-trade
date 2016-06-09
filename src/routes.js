@@ -4,17 +4,17 @@ import App from './components/App';
 import AuthPage from './components/auth/AuthPage';
 import AboutPage from './components/about/AboutPage';
 import HomePage from './components/home/HomePage';
-import UserPage from './components/user/UserPage';
-import AddBookPage from './components/user/AddBookPage';
-import AccountSettingsPage from './components/user/AccountSettingsPage';
+import BooksPage from './components/books/BooksPage';
+import AddBookPage from './components/books/AddBookPage';
+import AccountSettingsPage from './components/auth/AccountSettingsPage';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage}/>
     <Route path="about" component={AboutPage}/>
     <Route path="auth" component={AuthPage}/>
-    <Route path="user/:username" component={UserPage}/>
-    <Route path="user/:username/add-book" component={AddBookPage}/>
-    <Route path="user/:username/settings" component={AccountSettingsPage}/>
+    <Route path="/books" component={BooksPage}/>
+    <Route path="/add-book" component={AddBookPage}/>
+    <Route path="/account-settings" component={AccountSettingsPage}/>
   </Route>
 );

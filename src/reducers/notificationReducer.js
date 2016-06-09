@@ -8,6 +8,12 @@ export default function notificationReducer(state = initialState.notifications, 
       return objectAssign(action.notify, {show: true});
     case types.HIDE_NOTIFICATION:
       return objectAssign({}, state, {show: false});
+    case types.AJAX_CALL_ERROR:
+      return objectAssign({}, {
+        show: true,
+        type: "danger",
+        message: action.error
+      });
     default:
       return state;
   }

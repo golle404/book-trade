@@ -7,6 +7,8 @@ export default function ajaxStatusReducer(state = initialState.ajaxCallsNum, act
       return state + 1;
     case types.AJAX_CALL_END:
       return state - 1;
+    case types.AJAX_CALL_ERROR:
+      return state - 1;
     default:
       return state;
   }

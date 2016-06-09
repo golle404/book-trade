@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import {connect} from 'react-redux';
 import Header from './common/Header';
+import Footer from './common/Footer';
 import Notifications from './common/Notifications';
 
 class App extends React.Component {
@@ -12,7 +13,10 @@ class App extends React.Component {
       <div className="main">
         <Notifications />
         <Header />
-        {this.props.children}
+        <div className="container-main">
+          {this.props.children}
+        </div>
+        <Footer />
       </div>
     );
   }

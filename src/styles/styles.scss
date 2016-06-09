@@ -1,11 +1,42 @@
+body {
+
+}
 .main{
   margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+}
+.navbar.navbar-footer{
+  min-height: 30px;
+  margin: 0;
+}
+.container-main{
+  min-height: calc(100vh - 120px);
 }
 .container.login-container{
   width: 400px;
 }
 .container.add-book-container{
   width: 400px;
+}
+.container.footer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  .icon-button{
+    margin-left: 6px;
+  }
+  .svg-glyph{
+    .glyph{
+      fill: #ccc;
+    }
+    &:hover{
+      .glyph{
+        fill: #fff;
+      }
+    }
+  }
 }
 .form-signin {
   max-width: 330px;

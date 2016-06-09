@@ -31,7 +31,7 @@ class AuthPage extends React.Component {
   }
 
   redirect(){
-    this.context.router.push("/user/golle");
+    this.context.router.push("/books");
     //this.context.router.push("/user/" + this.props.username);
   }
 

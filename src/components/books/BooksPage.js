@@ -5,7 +5,7 @@ import * as ajaxActions from '../../actions/ajaxActions';
 
 import BookList from './BookList';
 
-class UserPage extends React.Component {
+class BooksPage extends React.Component {
  constructor(props, context){
    super(props, context);
  }
@@ -42,7 +42,7 @@ class UserPage extends React.Component {
  }
 }
 
-UserPage.propTypes = {
+BooksPage.propTypes = {
   user: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -59,4 +59,4 @@ function mapDispatchToProps(dispatch){
    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+export default connect(mapStateToProps, mapDispatchToProps)(BooksPage);

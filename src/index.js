@@ -8,8 +8,9 @@ import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import routes from './routes';
 
-import './styles/styles.scss';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './styles/styles.scss';
+
 
 const store = configureStore();
 

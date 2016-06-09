@@ -28,7 +28,7 @@ class AddBookPage extends React.Component {
     alert.message = "New Book Added !!!";
 
     this.props.dispatch(showNotification(alert));
-    this.context.router.push("/user/" + this.props.user.username);
+    this.context.router.push("/books");
   }
 
   render () {

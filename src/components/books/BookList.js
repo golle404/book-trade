@@ -51,7 +51,7 @@ class BookList extends React.Component {
   }
 
   addBookRedirect(){
-    this.context.router.push("/user/" + this.props.user.username + "/add-book");
+    this.context.router.push("/add-book");
   }
 
   render () {
