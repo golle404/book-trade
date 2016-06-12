@@ -19,7 +19,7 @@ const Header = ({numAjaxCalls, user}) => {
           </ul>
           <ul className="nav navbar-nav navbar-right">
             {numAjaxCalls > 0 && <li><a><LoadingIcon /></a></li>}
-            {user.auth && <li><Link to={"/account-settings"} activeClassName="active">Account Settings</Link></li>}
+            {user.auth && <li><Link to={"/dashboard"} activeClassName="active">Dashboard</Link></li>}
             {!user.auth && <li><Link to="/auth" activeClassName="active">Login</Link></li>}
           </ul>
         </div>
@@ -28,7 +28,8 @@ const Header = ({numAjaxCalls, user}) => {
 };
 
 Header.propTypes = {
-  numAjaxCalls: PropTypes.number.isRequired
+  numAjaxCalls: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state){

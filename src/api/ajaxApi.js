@@ -1,150 +1,108 @@
 import objectAssign from 'object-assign';
-
-const delay = 1000;
-const books = [
-  {
-    id: 0,
-    title: "Unrequested Unapproved",
-    author: "golle",
-    ownerId: 6,
-    requested: -1,
-    approved: false
-  },
-  {
-    id: 1,
-    title: "Requested Unapproved",
-    author: "golle",
-    ownerId: 6,
-    requested: 1,
-    approved: false
-  },
-  {
-    id: 2,
-    title: "Requested Approved",
-    author: "golle",
-    ownerId: 6,
-    requested: 1,
-    approved: true
-  },
-  {
-    id: 3,
-    title: "Unrequested Unapproved",
-    author: "lleggo",
-    ownerId: 1,
-    requested: -1,
-    approved: false
-  },
-  {
-    id: 4,
-    title: "Requested Approved",
-    author: "lleggo",
-    ownerId: 1,
-    requested: 2,
-    approved: true
-  },
-  {
-    id: 5,
-    title: "User Requested Unapproved",
-    author: "lleggo",
-    ownerId: 1,
-    requested: 6,
-    approved: false
-  },
-  {
-    id: 6,
-    title: "User Requested Approved",
-    author: "lleggo",
-    ownerId: 1,
-    requested: 6,
-    approved: true
-  }
-];
+import nanoajax from 'nanoajax';
 
 class AjaxApi {
   static getBooksData() {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if(books){
-            resolve(objectAssign([], books));
+      nanoajax.ajax({url: "api/getBooks", method:"POST"}, (code, response)=>{
+        if(code === 200){
+          const respObj = JSON.parse(response);
+          if(respObj.error){
+              reject(respObj.error.message);
+          }else{
+            resolve(respObj);
+          }
         }else{
-          reject("no books");
+          reject("Server error");
         }
-      }, delay);
+      });
     });
   }
 
   static newBook(book) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let newBook = objectAssign({}, book, {id: books.length + 1, requested: -1, approved: false});
-        books.push(newBook);
-        if(books){
-            resolve(newBook);
+    let b = [];
+    for(const param in book){
+        b.push(param + "=" + book[param]);
+    }
+    return new Promise((resolve, reject)=>{
+      nanoajax.ajax({url: "api/addBook", method:"POST", body: b.join("&")}, (code, response)=>{
+        if(code === 200){
+          if(response === "success"){
+              resolve();
+          }else{
+            reject("Database error");
+          }
         }else{
-          reject("error adding book");
+          reject("Server error");
         }
-      }, delay);
+      });
     });
   }
 
   static updateBookStatus(id, type) {
+    let qStr = "id=" + id + "&type=" + type;
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let book = objectAssign({},books.filter(b=>{return b.id === id;})[0]);
-        if(book){
-          switch (type) {
-            case "approve":
-              book.approved = true;
-              break;
-            case "request":
-              book.requested = 6;
-              break;
-            case "cancel":
-              book.requested = -1;
-              break;
-            default:
-              break;
+      nanoajax.ajax({url: "api/bookStatus", method:"POST", body: qStr}, (code, response)=>{
+        if(code === 200){
+          const respObj = JSON.parse(response);
+          if(respObj.error){
+              reject(respObj.error.message);
+          }else{
+            resolve(respObj);
           }
-          resolve(book);
         }else{
-          reject('Book ID does not exist');
+          reject("Server error");
         }
-      }, delay);
+      });
     });
   }
-  static login(user){
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if(user.username === "golle"){
-          resolve({id: 6, username: "golle", auth: true});
+
+  static auth(user){
+    let b = [];
+    for(const param in user){
+        b.push(param + "=" + user[param]);
+    }
+    return new Promise((resolve, reject)=>{
+      nanoajax.ajax({url: "api/auth", method:"POST", body: b.join("&")}, (code, response)=>{
+        if(code === 200){
+          const respObj = JSON.parse(response);
+          if(respObj.error){
+              reject(respObj.error.message);
+          }else{
+            resolve(respObj);
+          }
         }else{
-          reject('Wrong username');
+          reject("Authentication failed");
         }
-      }, delay);
+      });
     });
   }
 
   static updateAccount(user){
+    let b = [];
+    for(const param in user){
+        b.push(param + "=" + user[param]);
+    }
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if(user){
-          resolve(objectAssign({id: 6, username: "golle", auth: true}, user));
-        }else{
-          reject('Not Auth');
-        }
-      }, delay);
+     nanoajax.ajax({url: "api/updateAccount", method:"POST", body: b.join("&")}, (code, response)=>{
+       if(code === 200){
+         resolve(JSON.parse(response));
+       }else{
+         reject("Update failed");
+       }
+     })
     });
   }
 
-  static getAuthUser(auth){
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if(auth){
-          resolve({id: 6, username: "golle", auth: true});
+  static getAuthUser(){
+    return new Promise((resolve, reject)=>{
+      nanoajax.ajax({url: "api/getAuthUser", method:"POST"}, (code, response)=>{
+        if(code === 200){
+          resolve(JSON.parse(response));
         }else{
-          reject('Not Auth');
+          reject("Authentication failed");
         }
-      }, delay);
+      });
     });
   }
 }

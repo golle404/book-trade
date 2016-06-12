@@ -8,7 +8,7 @@ export default function userReducer(state = initialState.user, action){
   switch(action.type){
     case types.USER_LOGIN_SUCCESS:
     case types.UPDATE_ACCOUNT_SUCCESS:
-      newState = objectAssign({}, state, action.user);
+      newState = objectAssign({}, action.user, {auth: true});
       return newState;
     default:
       return state;

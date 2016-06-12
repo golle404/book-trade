@@ -22,11 +22,11 @@ export function filterBooks(books, fType) {
       });
     case filterTypes.FILTER_APPROVED:
       return books.filter(book=>{
-        return book.status.isOwn && book.approved && book.requested !== -1;
+        return book.status.isOwn && book.approved && book.requested !== "";
       });
     case filterTypes.FILTER_PENDING:
       return books.filter(book=>{
-        return book.status.isOwn && !book.approved && book.requested !== -1;
+        return book.status.isOwn && !book.approved && book.requested !== "";
       });
     default:
       return books;
@@ -36,16 +36,15 @@ export function filterBooks(books, fType) {
 export function mapBookStatus(books, user){
   return books.map(book=>{
     let status = {};
-    status.isOwn = (book.ownerId === user.id);
-    status.userRequested = (book.requested === user.id);
-    status.available = !status.isOwn && book.requested === -1;
-    status.requested = book.requested !== -1 && !book.approved;
+    status.isOwn = (book.ownerId === user._id);
+    status.userRequested = (book.requested === user._id);
+    status.available = !status.isOwn && book.requested === "";
+    status.requested = book.requested !== "" && !book.approved;
     if(status.isOwn){
-      status.hasAction = false || (book.requested > -1 && !book.approved);
+      status.hasAction = false || (book.requested > "" && !book.approved);
     }else{
-      status.hasAction = (book.requested === -1) || (status.userRequested && !book.approved);
+      status.hasAction = (book.requested === "") || (status.userRequested && !book.approved);
     }
     book.status = status;
     return book;
-  }).sort((a,b)=>{return a.id - b.id});
-}
+  }).sort((a,b)=>{return a._id - b._id;})}

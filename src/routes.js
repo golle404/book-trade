@@ -6,7 +6,7 @@ import AboutPage from './components/about/AboutPage';
 import HomePage from './components/home/HomePage';
 import BooksPage from './components/books/BooksPage';
 import AddBookPage from './components/books/AddBookPage';
-import AccountSettingsPage from './components/auth/AccountSettingsPage';
+import Dashboard from './components/auth/Dashboard';
 
 export default (
   <Route path="/" component={App}>
@@ -15,6 +15,6 @@ export default (
     <Route path="auth" component={AuthPage}/>
     <Route path="/books" component={BooksPage}/>
     <Route path="/add-book" component={AddBookPage}/>
-    <Route path="/account-settings" component={AccountSettingsPage}/>
+    <Route path="/dashboard" component={Dashboard}/>
   </Route>
 );

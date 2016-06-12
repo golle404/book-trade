@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import BookActionButton from './BookActionButton';
 import BookStatusLabel from './BookStatusLabel';
-import ajaxActions from './../../actions/ajaxActions'
 
 class BookListItem extends React.Component{
 
@@ -12,7 +11,7 @@ class BookListItem extends React.Component{
 
   onBookAction(e){
     const aType = e.target.name;
-    this.props.onBookAction(this.props.book.id, aType);
+    this.props.onBookAction(this.props.book._id, aType);
   }
 
   render () {
@@ -21,7 +20,7 @@ class BookListItem extends React.Component{
     let btnClass = "btn btn-primary";
     let btnName = "request";
 
-    if(book.status.isOwn && book.requested > -1){
+    if(book.status.isOwn && book.requested != ""){
       btnLabel = "Approve";
       btnClass = "btn btn-success";
       btnName = "approve";

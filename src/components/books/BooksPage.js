@@ -12,10 +12,11 @@ class BooksPage extends React.Component {
 
  componentWillMount() {
    if(!this.props.user.auth){
-     this.props.actions.getAuthUser(true)
+     this.props.actions.getAuthUser()
       .then(()=>{
         this.getBooksData();
       }).catch((error)=>{
+        this.redirect();
         throw(error);
       });
    }else{
@@ -23,12 +24,17 @@ class BooksPage extends React.Component {
    }
  }
 
+ redirect(){
+   this.context.router.push("/auth");
+ }
+
  getBooksData(){
     this.props.actions.getBooksData()
       .then(()=>{
         //console.log("books loaded");
       }).catch((error)=>{
-        throw(error);
+        this.redirect();
+        //throw(error);
       });
  }
 
@@ -47,6 +53,9 @@ BooksPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+BooksPage.contextTypes = {
+  router: PropTypes.object
+};
 
 function mapStateToProps(state){
   return {

@@ -11,14 +11,15 @@ export default function booksReducer(state = initialState.bookData, action){
     case types.BOOK_STATUS_UPDATED_SUCCESS:
       newState = objectAssign({}, state);
       newState.books = [
-        ...newState.books.filter(book => book.id !== action.book.id),
+        ...newState.books.filter(book => book._id !== action.book._id),
         action.book
       ];
+
       return newState;
     case types.NEW_BOOK_SUCCESS:
-      newState = objectAssign({}, state);
-      newState.books = [ ...newState.books, action.book ];
-      return newState;
+      /*newState = objectAssign({}, state);
+      newState.books = [ ...newState.books, action.book ];*/
+      return state;
     case types.SET_BOOK_FILTER:
       newState = objectAssign({}, state, {filterType: action.filterType});
       return newState;

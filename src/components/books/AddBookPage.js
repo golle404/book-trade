@@ -14,7 +14,7 @@ class AddBookPage extends React.Component {
     const formData = {
       title: this.refs.bookTitle.value,
       author: this.refs.bookAuthor.value,
-      ownerId: this.props.user.id
+      ownerId: this.props.user._id
     };
     this.props.dispatch(newBookSubmit(formData))
         .then(()=>{this.redirect();})
@@ -69,7 +69,7 @@ class AddBookPage extends React.Component {
 
 AddBookPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 AddBookPage.contextTypes = {

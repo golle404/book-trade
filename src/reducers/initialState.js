@@ -1,8 +1,10 @@
 export default {
   user: {
-    id: null,
+    _id: null,
     username: "",
     email: "",
+    country: "",
+    citty: "",
     auth: false
   },
   bookData: {

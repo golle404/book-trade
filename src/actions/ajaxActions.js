@@ -75,7 +75,7 @@ export function getAuthUser(flag){
 export function formSubmit(formData){
   return function(dispatch){
     dispatch(ajaxCallBegin());
-    return AjaxApi.login(formData).then((response) => {
+    return AjaxApi.auth(formData).then((response) => {
       dispatch(ajaxCallEnd());
       dispatch(userLoginSuccess(response));
     }).catch(error => {
@@ -90,7 +90,7 @@ export function newBookSubmit(formData){
     dispatch(ajaxCallBegin());
     return AjaxApi.newBook(formData).then((response) => {
       dispatch(ajaxCallEnd());
-      dispatch(newBookSuccess(response));
+      dispatch(newBookSuccess());
     }).catch(error => {
       dispatch(ajaxCallError(error));
       throw(error);
