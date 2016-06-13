@@ -8,6 +8,7 @@ class App extends React.Component {
   constructor(props, context){
     super(props, context);
   }
+
   render () {
     return (
       <div className="main">
@@ -26,9 +27,4 @@ App.propTypes = {
   children: PropTypes.object.isRequired
 };
 
-/*function mapStateToProps(state, ownProps){
-  return {};
-}*/
-
 export default App;
-//export default connect(mapStateToProps)(App);

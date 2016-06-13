@@ -1,14 +1,15 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {accountSettingsSubmit} from '../../actions/ajaxActions';
+import {accountSettingsSubmit, resetPasswordSubmit} from '../../actions/ajaxActions';
 import {showNotification} from '../../actions/notificationActions';
-
 import AccountSettingsForm from './AccountSettingsForm';
+import PasswordResetForm from './PasswordResetForm';
 
 class Dashboard extends React.Component {
   constructor(props, context){
     super(props, context);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onPasswordReset = this.onPasswordReset.bind(this);
   }
 
   onFormSubmit(formRefs){
@@ -25,6 +26,19 @@ class Dashboard extends React.Component {
       });
   }
 
+  onPasswordReset(formRefs){
+    const formData = {
+      id: this.props.user._id,
+      password: formRefs.password.value
+    };
+
+    this.props.dispatch(resetPasswordSubmit(formData))
+        .then(()=>{this.redirect();})
+        .catch((error)=>{throw(error);
+      });
+
+  }
+
   redirect(){
     let alert = {};
     alert.type = "info";
@@ -37,10 +51,18 @@ class Dashboard extends React.Component {
       <div className="container login-container">
         <div className="panel panel-default">
           <div className="panel-heading">
-            <h4 className="pannel-title">Change Account Settings</h4>
+            <h4 className="pannel-title">Update Profile</h4>
           </div>
           <div className="panel-body">
             <AccountSettingsForm user={this.props.user} onSubmit={this.onFormSubmit}/>
+          </div>
+        </div>
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h4 className="pannel-title">Reset Password</h4>
+          </div>
+          <div className="panel-body">
+            <PasswordResetForm onSubmit={this.onPasswordReset}/>
           </div>
         </div>
       </div>
@@ -53,9 +75,6 @@ Dashboard.propTypes = {
   user: PropTypes.object.isRequired
 };
 
-Dashboard.contextTypes = {
-  router: PropTypes.object
-};
 
 function mapStateToProps(state){
   return {

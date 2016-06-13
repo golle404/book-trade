@@ -23,7 +23,13 @@ const AboutPage = () => {
                   <a href="http://expressjs.com/">Express.js</a>
                 </li>
                 <li>
-                  <a href="https://www.firebase.com/">Firebase</a>
+                  <a href="https://www.mongodb.com/">MongoDB</a>
+                </li>
+                <li>
+                  <a href="http://mongoosejs.com/">Mongoose</a>
+                </li>
+                <li>
+                  <a href="http://passportjs.org/">Passport.js</a>
                 </li>
               </ul>
               <h4>Frontend:</h4>

@@ -11,21 +11,7 @@ class BooksPage extends React.Component {
  }
 
  componentWillMount() {
-   if(!this.props.user.auth){
-     this.props.actions.getAuthUser()
-      .then(()=>{
-        this.getBooksData();
-      }).catch((error)=>{
-        this.redirect();
-        throw(error);
-      });
-   }else{
-    this.getBooksData();
-   }
- }
-
- redirect(){
-   this.context.router.push("/auth");
+   this.getBooksData();
  }
 
  getBooksData(){
@@ -51,10 +37,6 @@ class BooksPage extends React.Component {
 BooksPage.propTypes = {
   user: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
-};
-
-BooksPage.contextTypes = {
-  router: PropTypes.object
 };
 
 function mapStateToProps(state){

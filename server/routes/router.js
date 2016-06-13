@@ -69,6 +69,20 @@ router.post("/api/updateAccount", isLoggedIn, function(req, res){
 	})
 })
 
+router.post("/api/resetPassword", isLoggedIn, function(req, res){
+	console.log("ressert",req.body.pwd)
+	Account.findById(req.body.id, function(err, account){
+		if(err){
+			return res.send({error:err});
+		}else{
+			account.setPassword(req.body.pwd, function(err, user){
+				user.save()
+				res.send("success")
+			})
+		}
+	})
+})
+
 function registerAccount(req, res){
 	Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
       if (err) {

@@ -86,7 +86,25 @@ class AjaxApi {
     return new Promise((resolve, reject) => {
      nanoajax.ajax({url: "api/updateAccount", method:"POST", body: b.join("&")}, (code, response)=>{
        if(code === 200){
-         resolve(JSON.parse(response));
+         const respObj = JSON.parse(response);
+         if(respObj.error){
+             reject(respObj.error.message);
+         }else{
+           resolve(respObj);
+         }
+       }else{
+         reject("Update failed");
+       }
+     })
+    });
+  }
+
+  static resetPassword({id, password}){
+    let qStr = "id=" + id + "&pwd=" + password;
+    return new Promise((resolve, reject) => {
+     nanoajax.ajax({url: "api/resetPassword", method:"POST", body: qStr}, (code, response)=>{
+       if(code === 200){
+         resolve("updated");
        }else{
          reject("Update failed");
        }
@@ -98,9 +116,15 @@ class AjaxApi {
     return new Promise((resolve, reject)=>{
       nanoajax.ajax({url: "api/getAuthUser", method:"POST"}, (code, response)=>{
         if(code === 200){
-          resolve(JSON.parse(response));
+          const respObj = JSON.parse(response);
+          if(respObj.error){
+            reject(respObj.error);
+            //resolve({error:"Authentication failed"})
+          }else{
+            resolve(respObj);
+          }
         }else{
-          reject("Authentication failed");
+          reject({error:"Authentication failed"});
         }
       });
     });

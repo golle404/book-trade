@@ -4,7 +4,7 @@ export default {
     username: "",
     email: "",
     country: "",
-    citty: "",
+    city: "",
     auth: false
   },
   bookData: {
@@ -15,6 +15,6 @@ export default {
   notifications:{
     show: false,
     type: "info",
-    message: "test"
+    message: ""
   }
 };

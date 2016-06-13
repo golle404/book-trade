@@ -21,6 +21,10 @@ export function updateAccountSuccess(user){
   return { type: types.UPDATE_ACCOUNT_SUCCESS, user};
 }
 
+export function resetPasswordSuccess(user){
+  return { type: types.RESET_PASSWORD_SUCCESS, user};
+}
+
 export function ajaxCallBegin(){
   return {type: types.AJAX_CALL_BEGIN};
 }
@@ -61,13 +65,13 @@ export function updateBookStatus(bookId, updateType){
 
 export function getAuthUser(flag){
   return function(dispatch){
-    dispatch(ajaxCallBegin());
+    //dispatch(ajaxCallBegin());
     return AjaxApi.getAuthUser(flag).then((response) => {
-      dispatch(ajaxCallEnd());
+      //dispatch(ajaxCallEnd());
       dispatch(userLoginSuccess(response));
     }).catch(error => {
-      dispatch(ajaxCallError(error));
-      throw(error);
+      //dispatch(ajaxCallError(error));
+      //throw(error);
     });
   };
 }
@@ -104,6 +108,19 @@ export function accountSettingsSubmit(formData){
     return AjaxApi.updateAccount(formData).then((response) => {
       dispatch(ajaxCallEnd());
       dispatch(updateAccountSuccess(response));
+    }).catch(error => {
+      dispatch(ajaxCallError(error));
+      throw(error);
+    });
+  };
+}
+
+export function resetPasswordSubmit(formData){
+  return function(dispatch){
+    dispatch(ajaxCallBegin());
+    return AjaxApi.resetPassword(formData).then((response) => {
+      dispatch(ajaxCallEnd());
+      dispatch(resetPasswordSuccess(response));
     }).catch(error => {
       dispatch(ajaxCallError(error));
       throw(error);

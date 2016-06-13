@@ -14,7 +14,7 @@ class AccountSettingsForm extends React.Component {
 
   render() {
     return (
-      <form className="form-signin" onSubmit={this.onSubmit}>
+      <form className="form-account" onSubmit={this.onSubmit}>
         <label htmlFor="inputUsername">Username</label>
         <input
           id="inputUsername"
