@@ -26,7 +26,7 @@ class PasswordResetForm extends React.Component {
           Reset
         </button>
       </form>
-    )
+    );
   }
 }
 

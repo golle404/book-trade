@@ -1,4 +1,3 @@
-import objectAssign from 'object-assign';
 import nanoajax from 'nanoajax';
 
 class AjaxApi {
@@ -95,7 +94,7 @@ class AjaxApi {
        }else{
          reject("Update failed");
        }
-     })
+     });
     });
   }
 
@@ -103,12 +102,12 @@ class AjaxApi {
     let qStr = "id=" + id + "&pwd=" + password;
     return new Promise((resolve, reject) => {
      nanoajax.ajax({url: "api/resetPassword", method:"POST", body: qStr}, (code, response)=>{
-       if(code === 200){
-         resolve("updated");
+       if(code === 200 && response === "success"){
+         resolve("Password updated");
        }else{
-         reject("Update failed");
+         reject({error:"Update failed"});
        }
-     })
+     });
     });
   }
 

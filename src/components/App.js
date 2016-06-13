@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import {connect} from 'react-redux';
 import Header from './common/Header';
 import Footer from './common/Footer';
 import Notifications from './common/Notifications';

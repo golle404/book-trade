@@ -11,17 +11,7 @@ class BooksPage extends React.Component {
  }
 
  componentWillMount() {
-   this.getBooksData();
- }
-
- getBooksData(){
-    this.props.actions.getBooksData()
-      .then(()=>{
-        //console.log("books loaded");
-      }).catch((error)=>{
-        this.redirect();
-        //throw(error);
-      });
+   this.props.actions.getBooksData();
  }
 
  render () {

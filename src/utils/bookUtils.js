@@ -47,4 +47,4 @@ export function mapBookStatus(books, user){
     }
     book.status = status;
     return book;
-  }).sort((a,b)=>{return a._id - b._id;})}
+  }).sort((a,b)=>{return a._id - b._id;});}

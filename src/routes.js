@@ -10,7 +10,7 @@ import Dashboard from './components/auth/Dashboard';
 
 function requireAuth(store, nextState, replace, next){
   if(!store.getState().user.auth){
-    replace('/auth');
+    replace('/');
   }
   next();
 }
@@ -25,5 +25,5 @@ export default (store) => {
       <Route path="/add-book" component={AddBookPage} onEnter={requireAuth.bind(this, store)}/>
       <Route path="/dashboard" component={Dashboard} onEnter={requireAuth.bind(this, store)}/>
     </Route>
-  )
-}
+  );
+};

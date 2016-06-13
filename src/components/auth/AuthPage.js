@@ -1,7 +1,7 @@
 /* eslint-disable react/no-set-state */
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {formSubmit} from '../../actions/ajaxActions';
+import {authFormSubmit} from '../../actions/ajaxActions';
 
 class AuthPage extends React.Component {
   constructor(props, context){
@@ -24,7 +24,7 @@ class AuthPage extends React.Component {
       password: this.refs.password.value,
       register: this.state.register
     };
-    this.props.dispatch(formSubmit(formData))
+    this.props.dispatch(authFormSubmit(formData))
         .then(()=>{this.redirect();})
         .catch((error)=>{throw(error);
       });

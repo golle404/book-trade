@@ -69,14 +69,14 @@ export function getAuthUser(flag){
     return AjaxApi.getAuthUser(flag).then((response) => {
       //dispatch(ajaxCallEnd());
       dispatch(userLoginSuccess(response));
-    }).catch(error => {
+    }).catch(() => {
       //dispatch(ajaxCallError(error));
       //throw(error);
     });
   };
 }
 
-export function formSubmit(formData){
+export function authFormSubmit(formData){
   return function(dispatch){
     dispatch(ajaxCallBegin());
     return AjaxApi.auth(formData).then((response) => {
@@ -92,7 +92,7 @@ export function formSubmit(formData){
 export function newBookSubmit(formData){
   return function(dispatch){
     dispatch(ajaxCallBegin());
-    return AjaxApi.newBook(formData).then((response) => {
+    return AjaxApi.newBook(formData).then(() => {
       dispatch(ajaxCallEnd());
       dispatch(newBookSuccess());
     }).catch(error => {

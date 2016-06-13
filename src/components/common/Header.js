@@ -20,6 +20,7 @@ const Header = ({numAjaxCalls, user}) => {
           <ul className="nav navbar-nav navbar-right">
             {numAjaxCalls > 0 && <li><a><LoadingIcon /></a></li>}
             {user.auth && <li><Link to={"/dashboard"} activeClassName="active">Dashboard</Link></li>}
+            {user.auth && <li><a href="/logout" >Logout</a></li>}
             {!user.auth && <li><Link to="/auth" activeClassName="active">Login</Link></li>}
           </ul>
         </div>

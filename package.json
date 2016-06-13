@@ -6,7 +6,7 @@
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
-    "start": "npm-run-all --parallel open:dev lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
     "open:dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-2",
     "open:dist": "babel-node tools/distServer.js",
@@ -16,7 +16,7 @@
     "remove-dist": "rimraf ./dist",
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm run clean-dist && npm run build:html && npm run lint && npm run test",
-    "build": "babel-node tools/build.js && npm run open:dev",
+    "build": "babel-node tools/build.js && npm run open:dist",
     "test": "mocha tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" --reporter progress",
     "test:cover:travis": "babel-node isparta cover --root src --report lcovonly _mocha -- --require ./tools/testSetup.js \"src/**/*.spec.js\" && cat ./coverage/lcov.info | coveralls.js",
@@ -47,7 +47,8 @@
     "react-router": "2.4.0",
     "react-router-bootstrap": "0.23.0",
     "redux": "3.5.2",
-    "redux-thunk": "2.1.0"
+    "redux-thunk": "2.1.0",
+    "serve-favicon": "2.3.0"
   },
   "devDependencies": {
     "babel-cli": "6.8.0",

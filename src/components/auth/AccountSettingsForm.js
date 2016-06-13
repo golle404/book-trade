@@ -52,7 +52,7 @@ class AccountSettingsForm extends React.Component {
           Save
         </button>
       </form>
-    )
+    );
   }
 }
 
