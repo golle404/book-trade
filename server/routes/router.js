@@ -5,11 +5,6 @@ import Book from './../models/Book';
 
 let router = Router();
 
-router.get('/*', function(req, res) {
-  console.log("******")
-  res.sendFile('index.html');
-});
-
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');

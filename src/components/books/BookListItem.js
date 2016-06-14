@@ -35,10 +35,10 @@ class BookListItem extends React.Component{
       <li className="list-group-item">
         <div className="book-container">
           <div className="book-info">
-            <h2>{book.title}<small> by {book.author}</small></h2>
+            <h4>{book.title}<small> by {book.author}</small></h4>
             <p><span>Book status: </span>
             {book.status.available && <BookStatusLabel label="Available" lblClass="info"/>}
-            {book.status.isOwn && <BookStatusLabel label="Your Book" lblClass="info"/>}
+            {book.status.isOwn && <BookStatusLabel label="Your Book" lblClass="danger"/>}
             {book.status.requested && <BookStatusLabel label="Requested" lblClass="warning"/>}
             {book.approved && <BookStatusLabel label="Approved" lblClass="success"/>}
             </p>

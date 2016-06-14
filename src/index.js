@@ -9,6 +9,7 @@ import {getAuthUser} from './actions/ajaxActions';
 import configureStore from './store/configureStore';
 import routes from './routes';
 
+import '../node_modules/bootstrap/js/collapse';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './styles/styles.scss';
 

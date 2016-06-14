@@ -58,27 +58,34 @@ class BookList extends React.Component {
     return (
         <div className="panel panel-default">
           <div className="panel-heading">
-            <h4 className="pannel-title">Books For Trade</h4>
-            <div className="btn-group" role="group">
-              {filterButtons.map(btn=>{
-                return (
-                  <button
-                    type="button"
-                    className={btn.btnClass}
-                    disabled={btn.name === this.props.filterType}
-                    onClick={this.setBookFilter}
-                    name={btn.name}
-                    key={btn.name}>
-                      {btn.caption}
-                    </button>
-                );
-              })}
+            <div className="row">
+              <div className="col-md-12">
+                <h4 className="pannel-title">Books For Trade</h4>
+              </div>
             </div>
-            <div className="btn-group pull-right" role="group">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.addBookRedirect}>Add Book</button>
+            <div className="row">
+              <div className="col-md-8">
+                  <div className="btn-group" role="group">
+                    {filterButtons.map(btn=>{
+                      return (
+                        <button
+                          type="button"
+                          className={btn.btnClass}
+                          disabled={btn.name === this.props.filterType}
+                          onClick={this.setBookFilter}
+                          name={btn.name}
+                          key={btn.name}>
+                            {btn.caption}
+                          </button>
+                      );
+                    })}
+                  </div>
+              </div>
+              <div className="col-md-4">
+                <button type="button" className="btn btn-default pull-right" onClick={this.addBookRedirect}>
+                    Add Book
+                  </button>
+              </div>
             </div>
           </div>
           <ul className="list-group">
@@ -116,3 +123,10 @@ function mapStateToProps(state){
 }
 
 export default connect(mapStateToProps)(BookList);
+/*
+<div className="btn-group pull-right" role="group">
+  <button
+    type="button"
+    className="btn btn-primary"
+    onClick={this.addBookRedirect}>Add Book</button>
+</div>*/

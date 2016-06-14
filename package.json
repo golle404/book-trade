@@ -6,7 +6,7 @@
     "remove-demo": "babel-node tools/removeDemo.js",
     "start-message": "babel-node tools/startMessage.js",
     "prestart": "npm-run-all --parallel start-message remove-dist",
-    "start": "npm-run-all --parallel open:src lint:watch",
+    "start": "npm-run-all --parallel open:dev lint:watch",
     "open:src": "babel-node tools/srcServer.js",
     "open:dev": "nodemon server/index.js --exec babel-node --presets es2015,stage-2",
     "open:dist": "babel-node tools/distServer.js",
